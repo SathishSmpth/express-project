@@ -1,0 +1,17 @@
+var app = require("../app");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+dotenv.config()
+
+dotenv.config({ path: __dirname + "/.env"  });
+console.log(__dirname);
+
+const DB = process.env.MONGO_LOCAL_DATABASE;
+const port = process.env.APP_PORT || 3000;
+
+mongoose.connect(DB).then(() => console.log("Db connection successful"));
+
+
+app.listen(port, () => {
+  console.log(`App running on port ${port}`);
+});
